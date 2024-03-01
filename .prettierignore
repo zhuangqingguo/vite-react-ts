@@ -1,0 +1,8 @@
+# 忽略格式化文件 (根据项目需要自行添加)
+node_modules
+dist
+@types/auto-imports.d.ts
+.husky
+pnpm-lock.yaml
+public
+@types/auto-imports.d.ts
