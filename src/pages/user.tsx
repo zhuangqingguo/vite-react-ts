@@ -1,7 +1,15 @@
-import { useNavigate } from 'react-router-dom'
+import useUserStore, { UserState } from '@/store/user'
 
 const User = () => {
   const navigation = useNavigate()
+
+  const [userInfo, token, count, addCount] = useUserStore((state: UserState) => [
+    state.userInfo,
+    state.token,
+    state.count,
+    state.addCount,
+  ])
+
   return (
     <div>
       {/* 报错：因为取不到c属性 */}
@@ -13,6 +21,10 @@ const User = () => {
       >
         manage
       </AButton>
+      <div>{token}</div>
+      <div>{userInfo.name}</div>
+      <AButton onClick={() => addCount(count + 1)}>增加</AButton>
+      <div>{count}</div>
     </div>
   )
 }

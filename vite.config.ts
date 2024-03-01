@@ -7,7 +7,7 @@ import AhooksResolver from 'unplugin-auto-import-ahooks'
 import AntdResolver from 'unplugin-auto-import-antd'
 
 import { defineConfig, loadEnv } from 'vite'
-import viteCompression from 'vite-plugin-compression'
+import ViteCompression from 'vite-plugin-compression'
 
 // https://vitejs.dev/config/
 
@@ -47,10 +47,11 @@ export default ({ mode }) => {
           'src/store/**',
         ],
       }),
-      {
-        ...viteCompression(),
-        apply: 'build',
-      },
+      ViteCompression({
+        filter: /\.(js|mjs|json|css|html|ttf|otf|svg)$/i,
+        algorithm: 'gzip',
+        threshold: 1024 * 5, // 大于5k,
+      }),
     ],
     //这里进行配置别名
     resolve: {
@@ -67,6 +68,15 @@ export default ({ mode }) => {
       },
     },
     build: {
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true, // 是否过滤掉所有consol.log
+          drop_debugger: true,
+        },
+      },
+      reportCompressedSize: false,
+      chunkSizeWarningLimit: 1500,
       rollupOptions: {
         output: {
           chunkFileNames: 'static/js/[name]-[hash].js',
