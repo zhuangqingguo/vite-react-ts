@@ -94,9 +94,6 @@ devDependencies:
   prettier:
     specifier: ^3.2.5
     version: 3.2.5
-  recommended:
-    specifier: link:plugin:prettier/recommended
-    version: link:plugin:prettier/recommended
   sass:
     specifier: ^1.71.1
     version: 1.71.1

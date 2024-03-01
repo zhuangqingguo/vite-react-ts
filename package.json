@@ -42,7 +42,6 @@
     "lint-staged": "^15.2.2",
     "postcss": "^8.4.35",
     "prettier": "^3.2.5",
-    "recommended": "link:plugin:prettier/recommended",
     "sass": "^1.71.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
