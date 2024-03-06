@@ -25,6 +25,10 @@ const Home = () => {
       <div>{userInfo.name}</div>
       <AButton onClick={() => addCount(count + 1)}>增加</AButton>
       <div>{count}</div>
+      <SvgIcon
+        name="react"
+        className="iconfont"
+      />
     </div>
   )
 }

@@ -8,11 +8,9 @@ import AntdResolver from 'unplugin-auto-import-antd'
 
 import { defineConfig, loadEnv } from 'vite'
 import ViteCompression from 'vite-plugin-compression'
-
-import Icons from 'unplugin-icons/vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vitejs.dev/config/
-
 export default ({ mode }) => {
   console.log('mode', loadEnv(mode, process.cwd()).VITE_BASE_URL) //127.0.0.1:9000/api
   return defineConfig({
@@ -49,10 +47,11 @@ export default ({ mode }) => {
           'src/store/**',
         ],
       }),
-      Icons({
-        autoInstall: true,
-        compiler: 'jsx',
-        jsx: 'react',
+      createSvgIconsPlugin({
+        // 指定需要缓存的图标文件夹
+        iconDirs: [fileURLToPath(new URL('./src/assets/svgs', import.meta.url))],
+        // 指定symbolId格式
+        symbolId: 'icon-[name]',
       }),
       ViteCompression({
         filter: /\.(js|mjs|json|css|html|ttf|otf|svg)$/i,

@@ -27,6 +27,7 @@ declare global {
   const Route: typeof import('react-router-dom')['Route']
   const Routes: typeof import('react-router-dom')['Routes']
   const Suspense: typeof import('react')['Suspense']
+  const SvgIcon: typeof import('../src/components/SvgIcon/index')['default']
   const TableLayout: typeof import('../src/layouts/TableLayout/index')['default']
   const createRef: typeof import('react')['createRef']
   const forwardRef: typeof import('react')['forwardRef']
