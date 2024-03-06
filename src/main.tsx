@@ -1,15 +1,10 @@
-import { Suspense } from 'react'
-
+import React from 'react'
 import ReactDOM from 'react-dom/client'
-
-import App from '@/App'
-
 import '@/assets/styles/main.scss'
+
+import { RouterProvider } from 'react-router-dom'
+import router from '@/router'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
-root.render(
-  <Suspense fallback={<div>Loading...</div>}>
-    <App />
-  </Suspense>,
-)
+root.render(<RouterProvider router={router} />)

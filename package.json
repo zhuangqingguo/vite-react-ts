@@ -11,8 +11,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.1",
+    "@ant-design/pro-components": "^2.6.49",
     "ahooks": "^3.7.10",
-    "antd": "^5.14.2",
+    "antd": "^5.15.0",
     "axios": "^1.6.7",
     "immer": "^10.0.3",
     "react": "^18.2.0",
@@ -20,7 +22,7 @@
     "react-router-dom": "^6.22.2",
     "styled-components": "^6.1.8",
     "use-immer": "^0.9.0",
-    "zustand": "^4.5.1"
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@brucesong/eslint-config-react": "^1.0.22",
@@ -31,7 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "autoprefixer": "^10.4.17",
+    "autoprefixer": "^10.4.18",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -49,6 +51,7 @@
     "unplugin-auto-import": "^0.17.5",
     "unplugin-auto-import-ahooks": "^0.0.2",
     "unplugin-auto-import-antd": "^0.0.1",
+    "unplugin-icons": "^0.18.5",
     "vite": "^5.1.4",
     "vite-plugin-compression": "^0.5.1"
   },

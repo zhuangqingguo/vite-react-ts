@@ -5,6 +5,7 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 interface UserInfo {
   name: string
   age: number
+  id: number
 }
 
 export interface UserState {
@@ -20,10 +21,11 @@ export interface UserState {
 // 创建状态存储
 const useUserStore = create<UserState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       userInfo: {
         name: 'zhangsan',
         age: 23,
+        id: 111,
       },
       count: 1,
       token: 'S1',
@@ -37,6 +39,8 @@ const useUserStore = create<UserState>()(
             state.userInfo.age = age
           }),
         ),
+      hasData: () => !!get().userInfo.id,
+
       //更新原始数据类型
       updateToken: (token) => set({ token }),
     }),

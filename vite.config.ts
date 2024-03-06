@@ -9,6 +9,8 @@ import AntdResolver from 'unplugin-auto-import-antd'
 import { defineConfig, loadEnv } from 'vite'
 import ViteCompression from 'vite-plugin-compression'
 
+import Icons from 'unplugin-icons/vite'
+
 // https://vitejs.dev/config/
 
 export default ({ mode }) => {
@@ -47,10 +49,15 @@ export default ({ mode }) => {
           'src/store/**',
         ],
       }),
+      Icons({
+        autoInstall: true,
+        compiler: 'jsx',
+        jsx: 'react',
+      }),
       ViteCompression({
         filter: /\.(js|mjs|json|css|html|ttf|otf|svg)$/i,
         algorithm: 'gzip',
-        threshold: 1024 * 5, // 大于5k,
+        threshold: 1024 * 5, // 5k以上压缩,
       }),
     ],
     //这里进行配置别名

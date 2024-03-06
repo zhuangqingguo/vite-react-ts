@@ -1,45 +1,93 @@
-/*  react-refresh/only-export-components */
 import { lazy } from 'react'
+import { SmileTwoTone } from '@ant-design/icons'
+import type { CustomRouteObject } from './index'
+import App from '@/App'
 
-import ErrorBoundary from '../pages/errorBoundary'
+const modules: any = import.meta.glob('@/pages/**/*.tsx')
 
-const Login = lazy(() => import('../pages/login'))
-const Home = lazy(() => import('../pages/home'))
-const User = lazy(() => import('../pages/user'))
-const Manage = lazy(() => import('../pages/manage'))
-const File = lazy(() => import('../pages/file'))
-const Info = lazy(() => import('../pages/info'))
+const lazyLoad = (moduleName: string) => {
+  const Module = lazy(modules[`/src/pages/${moduleName}/index.tsx`])
+  return <Module />
+}
 
-const routes = [
+const BaseLayout = lazy(() => import('@/layouts/BaseLayout'))
+
+const routes: CustomRouteObject[] = [
   {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    element: <Home />,
-    errorElement: <ErrorBoundary />,
+    path: '',
+    Component: App,
     children: [
       {
-        path: '/',
-        element: <User />,
+        path: '/login',
+        element: lazyLoad('login'),
+        meta: { title: '登录', icon: <SmileTwoTone /> },
       },
+
       {
-        path: '/manage',
-        element: <Manage />,
+        path: '',
+        element: <BaseLayout />,
+        meta: { icon: <SmileTwoTone /> },
+        children: [
+          {
+            path: '/',
+            element: lazyLoad('home'),
+            meta: { title: '首页', icon: <SmileTwoTone /> },
+          },
+          {
+            path: '/manage',
+            meta: { title: '管理', icon: <SmileTwoTone /> },
+            children: [
+              {
+                path: '/manage/manage1',
+                element: lazyLoad('manage/manage1'),
+                meta: { title: '管理1', icon: <SmileTwoTone /> },
+              },
+              {
+                path: '/manage/manage2',
+                element: lazyLoad('manage/manage2'),
+                meta: { title: '管理2', icon: <SmileTwoTone /> },
+              },
+              {
+                path: '/manage/info',
+                element: lazyLoad('manage/info'),
+                meta: { title: 'Info', icon: <SmileTwoTone /> },
+              },
+            ],
+          },
+          {
+            path: '/table-page',
+            element: lazyLoad('table-page'),
+            meta: { title: '列表页', icon: <SmileTwoTone /> },
+          },
+
+          {
+            path: '/403',
+            Component: lazy(() => import('@/pages/error-pages/403')),
+            hideMenu: true,
+          },
+          {
+            path: '/404',
+            Component: lazy(() => import('@/pages/error-pages/404')),
+            hideMenu: true,
+          },
+          {
+            path: '/500',
+            Component: lazy(() => import('@/pages/error-pages/500')),
+            hideMenu: true,
+          },
+          {
+            path: '*',
+            Component: lazy(() => import('@/pages/error-pages/404')),
+            hideMenu: true,
+          },
+        ],
       },
       {
         path: '/file',
-        element: <File />,
-      },
-      {
-        path: '/info',
-        element: <Info />,
+        element: lazyLoad('file'),
+        meta: { title: 'File', icon: <SmileTwoTone /> },
       },
     ],
-  },
-  {
-    path: '*',
-    element: <div>404</div>,
   },
 ]
 
